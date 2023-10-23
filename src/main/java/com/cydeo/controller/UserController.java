@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<ResponseWrapper> getUserByName(@PathParam("username") String username){
+    public ResponseEntity<ResponseWrapper> getUserByName(@PathVariable("username") String username){
         UserDTO user = userService.findByUserName(username);
         return ResponseEntity.ok(new ResponseWrapper("User is successfully retrieved",user,HttpStatus.OK));
     }
@@ -50,7 +50,8 @@ public class UserController {
     @DeleteMapping("/{userName}")
     public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable String userName){
         userService.deleteByUserName(userName);
-//        return ResponseEntity.status(HttpStatus.NO_CONTENT) --> 204. this doesn't show the body.
+//        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+//                .body(new ResponseWrapper("User is successfully created",HttpStatus.NO_CONTENT)); //--> 204. this doesn't show the body.
         return ResponseEntity.ok(new ResponseWrapper("User is successfully deleted",HttpStatus.OK));
     }
 

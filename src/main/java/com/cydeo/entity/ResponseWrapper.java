@@ -1,5 +1,6 @@
 package com.cydeo.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 @Getter     //jackson using @Getter @Setter when converting JSON to Java obj
 @Setter
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)  //don't show if null. will not show "data" when we DELETE
 public class ResponseWrapper {
 //customizing response.
 
