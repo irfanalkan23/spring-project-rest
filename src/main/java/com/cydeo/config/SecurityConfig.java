@@ -30,6 +30,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http.authorizeHttpRequests()
                 .anyRequest()
                 .permitAll();
+        //meaning; don't put any role based restriction here. Because I'll put everything in method level: @EnableMethodSecurity
         http.csrf().disable();
 }
 @Autowired
