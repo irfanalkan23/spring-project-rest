@@ -26,7 +26,7 @@ public class ProjectController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<ResponseWrapper> getProjectByCode(@PathVariable String code){
+    public ResponseEntity<ResponseWrapper> getProjectByCode(@PathVariable("code") String code){
         //@PathVariable = "catch from the uri
         ProjectDTO projectDTO = projectService.getByProjectCode(code);
         return ResponseEntity.ok(new ResponseWrapper("Project is successfully retrieved",projectDTO,HttpStatus.OK));
@@ -35,7 +35,7 @@ public class ProjectController {
     @PostMapping
     public ResponseEntity<ResponseWrapper> createProject(@RequestBody ProjectDTO project){
         projectService.save(project);
-        return ResponseEntity.ok(new ResponseWrapper("Project is successfully created",HttpStatus.CREATED));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper("Project is successfully created",HttpStatus.CREATED));
     }
 
     @PutMapping
