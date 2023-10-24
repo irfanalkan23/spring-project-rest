@@ -34,6 +34,8 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<ResponseWrapper> createProject(@RequestBody ProjectDTO project){
+        //when creating a project, I shouldn't pass completeTaskCounts and unfinishedTaskCounts!
+        //go to ProjectDTO --> @JsonProperty(access = JsonProperty.Access.READ_ONLY)
         projectService.save(project);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper("Project is successfully created",HttpStatus.CREATED));
     }

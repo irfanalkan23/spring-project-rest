@@ -35,7 +35,7 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<ResponseWrapper> createTask(@RequestBody TaskDTO taskDTO){
         taskService.save(taskDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper("Task is successfully created",taskDTO, HttpStatus.CREATED));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper("Task is successfully created", HttpStatus.CREATED));
     }
 
     @DeleteMapping("/{taskId}")
@@ -47,7 +47,7 @@ public class TaskController {
     @PutMapping
     public ResponseEntity<ResponseWrapper> updateTask(@RequestBody TaskDTO taskDTO){
         taskService.update(taskDTO);
-        return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated",taskDTO, HttpStatus.OK));
+        return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated", HttpStatus.OK));
     }
 
     @GetMapping("/employee/pending-tasks")
