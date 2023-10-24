@@ -31,6 +31,7 @@ public class UserController {
 
     @GetMapping("/{username}")
     public ResponseEntity<ResponseWrapper> getUserByName(@PathVariable("username") String username){
+        //@PathVariable = "catch from the uri
         UserDTO user = userService.findByUserName(username);
         return ResponseEntity.ok(new ResponseWrapper("User is successfully retrieved",user,HttpStatus.OK));
     }
