@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RolesAllowed("Admin")
+    @RolesAllowed("Manager")
     public ResponseEntity<ResponseWrapper> getUsers(){
         List<UserDTO> userDTOList = userService.listAllUsers();
         //I was giving this list of userDTOs to html. Now I'm gonna give it to ResponseEntity (http).

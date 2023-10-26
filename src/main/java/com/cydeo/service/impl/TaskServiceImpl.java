@@ -10,7 +10,6 @@ import com.cydeo.mapper.TaskMapper;
 import com.cydeo.repository.TaskRepository;
 import com.cydeo.repository.UserRepository;
 import com.cydeo.service.TaskService;
-import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -111,22 +110,22 @@ public class TaskServiceImpl implements TaskService {
         });
     }
 
-    @Override
-    public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
-        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
-        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
-
-        //we are hard coding the logged in user until we implement security:
-//        User loggedInUser = userRepository.findByUserName("john@employee.com");
-
-        //when we implemented the security (above 3 lines)
-        User loggedInUser = userRepository.findByUserName(username);
-
-        List<Task> list = taskRepository.findAllByTaskStatusIsNotAndAssignedEmployee(status, loggedInUser);
-        return list.stream().map(taskMapper::convertToDTO).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
+//        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
+//        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
+//
+//        //we are hard coding the logged in user until we implement security:
+////        User loggedInUser = userRepository.findByUserName("john@employee.com");
+//
+//        //when we implemented the security (above 3 lines)
+//        User loggedInUser = userRepository.findByUserName(username);
+//
+//        List<Task> list = taskRepository.findAllByTaskStatusIsNotAndAssignedEmployee(status, loggedInUser);
+//        return list.stream().map(taskMapper::convertToDTO).collect(Collectors.toList());
+//    }
 
     @Override
     public void updateStatus(TaskDTO dto) {
@@ -140,22 +139,22 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
-    @Override
-    public List<TaskDTO> listAllTasksByStatus(Status status) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
-        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
-        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
-
-        //we are hard coding the logged in user until we implement security:
-//        User loggedInUser = userRepository.findByUserName("john@employee.com");
-
-        //when we implemented the security (above 3 lines)
-        User loggedInUser = userRepository.findByUserName(username);
-
-        List<Task> list = taskRepository.findAllByTaskStatusAndAssignedEmployee(status, loggedInUser);
-        return list.stream().map(taskMapper::convertToDTO).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<TaskDTO> listAllTasksByStatus(Status status) {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
+//        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
+//        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
+//
+//        //we are hard coding the logged in user until we implement security:
+////        User loggedInUser = userRepository.findByUserName("john@employee.com");
+//
+//        //when we implemented the security (above 3 lines)
+//        User loggedInUser = userRepository.findByUserName(username);
+//
+//        List<Task> list = taskRepository.findAllByTaskStatusAndAssignedEmployee(status, loggedInUser);
+//        return list.stream().map(taskMapper::convertToDTO).collect(Collectors.toList());
+//    }
 
     @Override
     public List<TaskDTO> readAllByAssignedEmployee(User assignedEmployee) {

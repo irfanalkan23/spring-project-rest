@@ -1,0 +1,7 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/cydeo-dev
+          jwk-set-uri: http://localhost:8080/realms/cydeo-dev/protocol/openid-connect/certs

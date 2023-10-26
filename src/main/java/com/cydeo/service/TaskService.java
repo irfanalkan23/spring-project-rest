@@ -21,11 +21,11 @@ public interface TaskService {
 
     void completeByProject(ProjectDTO project);
 
-    List<TaskDTO> listAllTasksByStatusIsNot(Status status);
+//    List<TaskDTO> listAllTasksByStatusIsNot(Status status);
 
     void updateStatus(TaskDTO task);
 
-    List<TaskDTO> listAllTasksByStatus(Status status);
+//    List<TaskDTO> listAllTasksByStatus(Status status);
 
     List<TaskDTO> readAllByAssignedEmployee(User assignedEmployee);
 

@@ -58,12 +58,12 @@ public class ProjectController {
         return ResponseEntity.ok(new ResponseWrapper("Project is successfully deleted",HttpStatus.OK));
     }
 
-    @GetMapping("/manager/project-status")
-    @RolesAllowed("Manager")
-    public ResponseEntity<ResponseWrapper> getProjectByManager(){
-        List<ProjectDTO> projects = projectService.listAllProjectDetails();
-        return ResponseEntity.ok(new ResponseWrapper("Projects are successfully retrieved",projects,HttpStatus.OK));
-    }
+//    @GetMapping("/manager/project-status")
+//    @RolesAllowed("Manager")
+//    public ResponseEntity<ResponseWrapper> getProjectByManager(){
+//        List<ProjectDTO> projects = projectService.listAllProjectDetails();
+//        return ResponseEntity.ok(new ResponseWrapper("Projects are successfully retrieved",projects,HttpStatus.OK));
+//    }
 
     @PutMapping ("/manager/complete/{projectCode}")    //manager will be updating one of the fields (change status to COMPLETE)
     @RolesAllowed("Manager")

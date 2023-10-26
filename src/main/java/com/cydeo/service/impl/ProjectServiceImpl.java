@@ -12,7 +12,6 @@ import com.cydeo.repository.TaskRepository;
 import com.cydeo.service.ProjectService;
 import com.cydeo.service.TaskService;
 import com.cydeo.service.UserService;
-import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -101,37 +100,37 @@ public class ProjectServiceImpl implements ProjectService {
         taskService.completeByProject(projectMapper.convertToDto(project));
     }
 
-    @Override
-    public List<ProjectDTO> listAllProjectDetails() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
-        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
-        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
-
-        //we are hard coding the logged in user until we implement security:
+//    @Override
+//    public List<ProjectDTO> listAllProjectDetails() {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //get out from Spring
+//        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();    //access Keycloak
+//        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();   //get username from Keycloak
+//
+////        we are hard coding the logged in user until we implement security:
 //        UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
-
-        //when we implemented the security (above 3 lines)
-        UserDTO currentUserDTO = userService.findByUserName(username);
-
-        User user = userMapper.convertToEntity(currentUserDTO);
-
-        List<Project> list = projectRepository.findAllByAssignedManager(user);
-
-        return list.stream().map(project -> {
-
-            ProjectDTO obj = projectMapper.convertToDto(project);
-
-            obj.setUnfinishedTaskCounts(taskService.totalNonCompletedTask(project.getProjectCode()));
-            obj.setCompleteTaskCounts(taskService.totalCompletedTask(project.getProjectCode()));
-
-
-            return obj;
-
-
-
-        }).collect(Collectors.toList());
-    }
+//
+////        when we implemented the security (above 3 lines)
+//        UserDTO currentUserDTO = userService.findByUserName(username);
+//
+//        User user = userMapper.convertToEntity(currentUserDTO);
+//
+//        List<Project> list = projectRepository.findAllByAssignedManager(user);
+//
+//        return list.stream().map(project -> {
+//
+//            ProjectDTO obj = projectMapper.convertToDto(project);
+//
+//            obj.setUnfinishedTaskCounts(taskService.totalNonCompletedTask(project.getProjectCode()));
+//            obj.setCompleteTaskCounts(taskService.totalCompletedTask(project.getProjectCode()));
+//
+//
+//            return obj;
+//
+//
+//
+//        }).collect(Collectors.toList());
+//    }
 
     @Override
     public List<ProjectDTO> readAllByAssignedManager(User assignedManager) {

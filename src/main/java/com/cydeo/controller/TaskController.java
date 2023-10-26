@@ -56,12 +56,12 @@ public class TaskController {
         return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated", HttpStatus.OK));
     }
 
-    @GetMapping("/employee/pending-tasks")
-    @RolesAllowed("Employee")
-    public ResponseEntity<ResponseWrapper> employeePendingTasks(){
-        List<TaskDTO> taskDTOList = taskService.listAllTasksByStatusIsNot(Status.COMPLETE);
-        return ResponseEntity.ok(new ResponseWrapper("Tasks are successfully retrieved",taskDTOList, HttpStatus.OK));
-    }
+//    @GetMapping("/employee/pending-tasks")
+//    @RolesAllowed("Employee")
+//    public ResponseEntity<ResponseWrapper> employeePendingTasks(){
+//        List<TaskDTO> taskDTOList = taskService.listAllTasksByStatusIsNot(Status.COMPLETE);
+//        return ResponseEntity.ok(new ResponseWrapper("Tasks are successfully retrieved",taskDTOList, HttpStatus.OK));
+//    }
 
     @PutMapping("/employee/update")
     @RolesAllowed("Employee")
@@ -70,10 +70,10 @@ public class TaskController {
         return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated",HttpStatus.OK));
     }
 
-    @GetMapping("/employee/archive")
-    @RolesAllowed("Employee")
-    public ResponseEntity<ResponseWrapper> employeeArchivedTasks(){
-        List<TaskDTO> taskDTOS = taskService.listAllTasksByStatus(Status.COMPLETE);
-        return ResponseEntity.ok(new ResponseWrapper("Tasks are successfully retrieved",taskDTOS,HttpStatus.OK));
-    }
+//    @GetMapping("/employee/archive")
+//    @RolesAllowed("Employee")
+//    public ResponseEntity<ResponseWrapper> employeeArchivedTasks(){
+//        List<TaskDTO> taskDTOS = taskService.listAllTasksByStatus(Status.COMPLETE);
+//        return ResponseEntity.ok(new ResponseWrapper("Tasks are successfully retrieved",taskDTOS,HttpStatus.OK));
+//    }
 }
