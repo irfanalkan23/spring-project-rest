@@ -97,6 +97,11 @@
             <artifactId>jboss-jaxrs-api_3.0_spec</artifactId>
             <version>1.0.1.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
 
         <!--        <dependency>-->
